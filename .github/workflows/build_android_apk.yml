@@ -16,10 +16,22 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
-      - name: Install SDK 35
+      - name: Locate Android SDK manager and install SDK packages
+        shell: bash
         run: |
-          echo "Using preinstalled Android SDK: ${ANDROID_HOME:-$ANDROID_SDK_ROOT}"
-          sdkmanager "platforms;android-35" "build-tools;35.0.0" "platform-tools"
+          set -euo pipefail
+          export ANDROID_HOME="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}"
+          echo "Using Android SDK: $ANDROID_HOME"
+          ls -lah "$ANDROID_HOME" || true
+          SDKMANAGER="$(find "$ANDROID_HOME/cmdline-tools" -type f -name sdkmanager 2>/dev/null | head -n 1 || true)"
+          if [ -z "$SDKMANAGER" ]; then
+            echo "::error::sdkmanager not found under Android SDK. Inspect installed commandline tools."
+            find "$ANDROID_HOME" -maxdepth 4 -name sdkmanager -print || true
+            exit 1
+          fi
+          echo "Found SDK manager at: $SDKMANAGER"
+          yes | "$SDKMANAGER" --sdk_root="$ANDROID_HOME" --licenses >/dev/null || true
+          "$SDKMANAGER" --sdk_root="$ANDROID_HOME" "platforms;android-35" "build-tools;35.0.0" "platform-tools"
       - name: Install Godot editor and Android export templates
         shell: bash
         run: |
