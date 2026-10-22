@@ -46,6 +46,12 @@ jobs:
           test -s "$HOME/.local/share/godot/export_templates/4.5.1.stable/android_debug.apk"
       - name: Verify 24 levels and illustrations
         run: python3 qa/check_project.py
+      - name: Configure Android paths for Godot headless
+        shell: bash
+        run: |
+          mkdir -p "$HOME/.config/godot"
+          printf '[gd_resource type="EditorSettings" format=3]\n\n[resource]\nexport/android/android_sdk_path = "%s"\nexport/android/java_sdk_path = "%s"\n' "$ANDROID_HOME" "$JAVA_HOME" > "$HOME/.config/godot/editor_settings-4.tres"
+          cat "$HOME/.config/godot/editor_settings-4.tres"
       - name: Import and check Godot syntax
         run: /tmp/godot-bin/Godot_v4.5.1-stable_linux.x86_64 --headless --editor --path . --import --quit
       - name: Launch headless smoke test
