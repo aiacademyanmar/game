@@ -1,0 +1,14 @@
+config_version=5
+[application]
+config/name="Patthana Quest 24"
+run/main_scene="res://Main.tscn"
+config/features=PackedStringArray("4.5", "GL Compatibility")
+config/description="24-Level Offline Myanmar Paccaya Learning Adventure"
+[display]
+window/size/viewport_width=720
+window/size/viewport_height=1280
+window/stretch/mode="canvas_items"
+window/handheld/orientation=1
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

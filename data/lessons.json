@@ -1,0 +1,362 @@
+[
+  {
+    "id": 1,
+    "world": 1,
+    "name_mm": "ဟေတုပစ္စယော",
+    "pali": "Hetupaccayo",
+    "meaning_mm": "အမြစ်အကြောင်းတရားအဖြစ် ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "tree roots",
+    "image": "res://art/level_01.svg",
+    "quiz_options": [
+      "အမြစ်အကြောင်းတရားအဖြစ် ကျေးဇူးပြုခြင်း",
+      "မှီခိုရာအဖြစ် ကျေးဇူးပြုခြင်း",
+      "ဝိပါက်အကျိုးအဖြစ် ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 2,
+    "world": 1,
+    "name_mm": "အာရမ္မဏပစ္စယော",
+    "pali": "Ārammaṇapaccayo",
+    "meaning_mm": "အာရုံအဖြစ် ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "lotus object",
+    "image": "res://art/level_02.svg",
+    "quiz_options": [
+      "အာရုံအဖြစ် ကျေးဇူးပြုခြင်း",
+      "အားကြီးသော အထောက်အပံ့ဖြင့် ကျေးဇူးပြုခြင်း",
+      "အာဟာရအဖြစ် ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 3,
+    "world": 1,
+    "name_mm": "အဓိပတိပစ္စယော",
+    "pali": "Adhipatipaccayo",
+    "meaning_mm": "အကြီးအမှူးသဘောဖြင့် ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "guiding hand",
+    "image": "res://art/level_03.svg",
+    "quiz_options": [
+      "အကြီးအမှူးသဘောဖြင့် ကျေးဇူးပြုခြင်း",
+      "ရှေ့က ဖြစ်ပေါ်၍ ကျေးဇူးပြုခြင်း",
+      "အစိုးရခြင်းသဘောဖြင့် ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 4,
+    "world": 1,
+    "name_mm": "အနန္တရပစ္စယော",
+    "pali": "Anantarapaccayo",
+    "meaning_mm": "အကြားမရှိ ဆက်တိုက်ဖြစ်၍ ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "instant succession",
+    "image": "res://art/level_04.svg",
+    "quiz_options": [
+      "အကြားမရှိ ဆက်တိုက်ဖြစ်၍ ကျေးဇူးပြုခြင်း",
+      "နောက်မှ ဖြစ်ပေါ်၍ ကျေးဇူးပြုခြင်း",
+      "ဈာနင်္ဂတရားတို့ဖြင့် ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 5,
+    "world": 2,
+    "name_mm": "သမနန္တရပစ္စယော",
+    "pali": "Samanantarapaccayo",
+    "meaning_mm": "အစဉ်တကျ အခြားမဲ့ ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "orderly succession",
+    "image": "res://art/level_05.svg",
+    "quiz_options": [
+      "အစဉ်တကျ အခြားမဲ့ ကျေးဇူးပြုခြင်း",
+      "ထပ်တလဲလဲ ဖြစ်၍ ကျေးဇူးပြုခြင်း",
+      "မဂ္ဂင်္ဂတရားတို့ဖြင့် ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 6,
+    "world": 2,
+    "name_mm": "သဟဇာတပစ္စယော",
+    "pali": "Sahajātapaccayo",
+    "meaning_mm": "အတူတကွ ဖြစ်ပေါ်၍ ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "co-arising flowers",
+    "image": "res://art/level_06.svg",
+    "quiz_options": [
+      "အတူတကွ ဖြစ်ပေါ်၍ ကျေးဇူးပြုခြင်း",
+      "ကံစေတနာဖြင့် ကျေးဇူးပြုခြင်း",
+      "ယှဉ်တွဲဆက်စပ်၍ ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 7,
+    "world": 2,
+    "name_mm": "အညမညပစ္စယော",
+    "pali": "Aññamaññapaccayo",
+    "meaning_mm": "အပြန်အလှန် ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "mutual support",
+    "image": "res://art/level_07.svg",
+    "quiz_options": [
+      "အပြန်အလှန် ကျေးဇူးပြုခြင်း",
+      "ဝိပါက်အကျိုးအဖြစ် ကျေးဇူးပြုခြင်း",
+      "မယှဉ်တွဲဘဲ ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 8,
+    "world": 2,
+    "name_mm": "နိဿယပစ္စယော",
+    "pali": "Nissayapaccayo",
+    "meaning_mm": "မှီခိုရာအဖြစ် ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "foundation",
+    "image": "res://art/level_08.svg",
+    "quiz_options": [
+      "မှီခိုရာအဖြစ် ကျေးဇူးပြုခြင်း",
+      "အာဟာရအဖြစ် ကျေးဇူးပြုခြင်း",
+      "ရှိနေခြင်းဖြင့် ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 9,
+    "world": 3,
+    "name_mm": "ဥပနိဿယပစ္စယော",
+    "pali": "Upanissayapaccayo",
+    "meaning_mm": "အားကြီးသော အထောက်အပံ့ဖြင့် ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "strong support",
+    "image": "res://art/level_09.svg",
+    "quiz_options": [
+      "အားကြီးသော အထောက်အပံ့ဖြင့် ကျေးဇူးပြုခြင်း",
+      "အစိုးရခြင်းသဘောဖြင့် ကျေးဇူးပြုခြင်း",
+      "မရှိတော့ခြင်းဖြင့် ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 10,
+    "world": 3,
+    "name_mm": "ပုရေဇာတပစ္စယော",
+    "pali": "Purejātapaccayo",
+    "meaning_mm": "ရှေ့က ဖြစ်ပေါ်၍ ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "earlier presence",
+    "image": "res://art/level_10.svg",
+    "quiz_options": [
+      "ရှေ့က ဖြစ်ပေါ်၍ ကျေးဇူးပြုခြင်း",
+      "ဈာနင်္ဂတရားတို့ဖြင့် ကျေးဇူးပြုခြင်း",
+      "ကင်းပျောက်ခြင်းဖြင့် ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 11,
+    "world": 3,
+    "name_mm": "ပစ္ဆာဇာတပစ္စယော",
+    "pali": "Pacchājātapaccayo",
+    "meaning_mm": "နောက်မှ ဖြစ်ပေါ်၍ ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "later support",
+    "image": "res://art/level_11.svg",
+    "quiz_options": [
+      "နောက်မှ ဖြစ်ပေါ်၍ ကျေးဇူးပြုခြင်း",
+      "မဂ္ဂင်္ဂတရားတို့ဖြင့် ကျေးဇူးပြုခြင်း",
+      "မကင်းပျောက်သေးခြင်းဖြင့် ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 12,
+    "world": 3,
+    "name_mm": "အာသေဝနပစ္စယော",
+    "pali": "Āsevanapaccayo",
+    "meaning_mm": "ထပ်တလဲလဲ ဖြစ်၍ ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "repeated practice",
+    "image": "res://art/level_12.svg",
+    "quiz_options": [
+      "ထပ်တလဲလဲ ဖြစ်၍ ကျေးဇူးပြုခြင်း",
+      "ယှဉ်တွဲဆက်စပ်၍ ကျေးဇူးပြုခြင်း",
+      "အမြစ်အကြောင်းတရားအဖြစ် ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 13,
+    "world": 4,
+    "name_mm": "ကမ္မပစ္စယော",
+    "pali": "Kammapaccayo",
+    "meaning_mm": "ကံစေတနာဖြင့် ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "intention and action",
+    "image": "res://art/level_13.svg",
+    "quiz_options": [
+      "ကံစေတနာဖြင့် ကျေးဇူးပြုခြင်း",
+      "မယှဉ်တွဲဘဲ ကျေးဇူးပြုခြင်း",
+      "အာရုံအဖြစ် ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 14,
+    "world": 4,
+    "name_mm": "ဝိပါကပစ္စယော",
+    "pali": "Vipākapaccayo",
+    "meaning_mm": "ဝိပါက်အကျိုးအဖြစ် ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "result of action",
+    "image": "res://art/level_14.svg",
+    "quiz_options": [
+      "ဝိပါက်အကျိုးအဖြစ် ကျေးဇူးပြုခြင်း",
+      "ရှိနေခြင်းဖြင့် ကျေးဇူးပြုခြင်း",
+      "အကြီးအမှူးသဘောဖြင့် ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 15,
+    "world": 4,
+    "name_mm": "အာဟာရပစ္စယော",
+    "pali": "Āhārapaccayo",
+    "meaning_mm": "အာဟာရအဖြစ် ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "nourishment",
+    "image": "res://art/level_15.svg",
+    "quiz_options": [
+      "အာဟာရအဖြစ် ကျေးဇူးပြုခြင်း",
+      "မရှိတော့ခြင်းဖြင့် ကျေးဇူးပြုခြင်း",
+      "အကြားမရှိ ဆက်တိုက်ဖြစ်၍ ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 16,
+    "world": 4,
+    "name_mm": "ဣန္ဒြိယပစ္စယော",
+    "pali": "Indriyapaccayo",
+    "meaning_mm": "အစိုးရခြင်းသဘောဖြင့် ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "governing faculties",
+    "image": "res://art/level_16.svg",
+    "quiz_options": [
+      "အစိုးရခြင်းသဘောဖြင့် ကျေးဇူးပြုခြင်း",
+      "ကင်းပျောက်ခြင်းဖြင့် ကျေးဇူးပြုခြင်း",
+      "အစဉ်တကျ အခြားမဲ့ ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 17,
+    "world": 5,
+    "name_mm": "ဈာနပစ္စယော",
+    "pali": "Jhānapaccayo",
+    "meaning_mm": "ဈာနင်္ဂတရားတို့ဖြင့် ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "meditation factors",
+    "image": "res://art/level_17.svg",
+    "quiz_options": [
+      "ဈာနင်္ဂတရားတို့ဖြင့် ကျေးဇူးပြုခြင်း",
+      "မကင်းပျောက်သေးခြင်းဖြင့် ကျေးဇူးပြုခြင်း",
+      "အတူတကွ ဖြစ်ပေါ်၍ ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 18,
+    "world": 5,
+    "name_mm": "မဂ္ဂပစ္စယော",
+    "pali": "Maggapaccayo",
+    "meaning_mm": "မဂ္ဂင်္ဂတရားတို့ဖြင့် ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "path factors",
+    "image": "res://art/level_18.svg",
+    "quiz_options": [
+      "မဂ္ဂင်္ဂတရားတို့ဖြင့် ကျေးဇူးပြုခြင်း",
+      "အမြစ်အကြောင်းတရားအဖြစ် ကျေးဇူးပြုခြင်း",
+      "အပြန်အလှန် ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 19,
+    "world": 5,
+    "name_mm": "သမ္ပယုတ္တပစ္စယော",
+    "pali": "Sampayuttapaccayo",
+    "meaning_mm": "ယှဉ်တွဲဆက်စပ်၍ ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "joined association",
+    "image": "res://art/level_19.svg",
+    "quiz_options": [
+      "ယှဉ်တွဲဆက်စပ်၍ ကျေးဇူးပြုခြင်း",
+      "အာရုံအဖြစ် ကျေးဇူးပြုခြင်း",
+      "မှီခိုရာအဖြစ် ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 20,
+    "world": 5,
+    "name_mm": "ဝိပ္ပယုတ္တပစ္စယော",
+    "pali": "Vippayuttapaccayo",
+    "meaning_mm": "မယှဉ်တွဲဘဲ ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "distinct support",
+    "image": "res://art/level_20.svg",
+    "quiz_options": [
+      "မယှဉ်တွဲဘဲ ကျေးဇူးပြုခြင်း",
+      "အကြီးအမှူးသဘောဖြင့် ကျေးဇူးပြုခြင်း",
+      "အားကြီးသော အထောက်အပံ့ဖြင့် ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 21,
+    "world": 6,
+    "name_mm": "အတ္ထိပစ္စယော",
+    "pali": "Atthipaccayo",
+    "meaning_mm": "ရှိနေခြင်းဖြင့် ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "continued presence",
+    "image": "res://art/level_21.svg",
+    "quiz_options": [
+      "ရှိနေခြင်းဖြင့် ကျေးဇူးပြုခြင်း",
+      "အကြားမရှိ ဆက်တိုက်ဖြစ်၍ ကျေးဇူးပြုခြင်း",
+      "ရှေ့က ဖြစ်ပေါ်၍ ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 22,
+    "world": 6,
+    "name_mm": "နတ္ထိပစ္စယော",
+    "pali": "Natthipaccayo",
+    "meaning_mm": "မရှိတော့ခြင်းဖြင့် ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "prior moment absent",
+    "image": "res://art/level_22.svg",
+    "quiz_options": [
+      "မရှိတော့ခြင်းဖြင့် ကျေးဇူးပြုခြင်း",
+      "အစဉ်တကျ အခြားမဲ့ ကျေးဇူးပြုခြင်း",
+      "နောက်မှ ဖြစ်ပေါ်၍ ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 23,
+    "world": 6,
+    "name_mm": "ဝိဂတပစ္စယော",
+    "pali": "Vigatapaccayo",
+    "meaning_mm": "ကင်းပျောက်ခြင်းဖြင့် ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "passing away",
+    "image": "res://art/level_23.svg",
+    "quiz_options": [
+      "ကင်းပျောက်ခြင်းဖြင့် ကျေးဇူးပြုခြင်း",
+      "အတူတကွ ဖြစ်ပေါ်၍ ကျေးဇူးပြုခြင်း",
+      "ထပ်တလဲလဲ ဖြစ်၍ ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  },
+  {
+    "id": 24,
+    "world": 6,
+    "name_mm": "အဝိဂတပစ္စယော",
+    "pali": "Avigatapaccayo",
+    "meaning_mm": "မကင်းပျောက်သေးခြင်းဖြင့် ကျေးဇူးပြုခြင်း",
+    "mnemonic_en": "still present",
+    "image": "res://art/level_24.svg",
+    "quiz_options": [
+      "မကင်းပျောက်သေးခြင်းဖြင့် ကျေးဇူးပြုခြင်း",
+      "အပြန်အလှန် ကျေးဇူးပြုခြင်း",
+      "ကံစေတနာဖြင့် ကျေးဇူးပြုခြင်း"
+    ],
+    "quiz_correct": 0
+  }
+]
