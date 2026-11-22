@@ -1,0 +1,135 @@
+name: Secure Freelancer Marketplace APK Build
+
+on:
+  push:
+    branches:
+      - temp-secure-freelancer-apk-build
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    steps:
+      - name: Checkout build branch
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Detect primary secure-build run
+        shell: bash
+        run: |
+          if [[ -f payload.enc.b64 && -f key.enc.b64 ]]; then
+            echo "PRIMARY_RUN=false" >> "$GITHUB_ENV"
+            echo "Encrypted payload already exists; this follower run will exit cleanly."
+          else
+            echo "PRIMARY_RUN=true" >> "$GITHUB_ENV"
+          fi
+
+      - name: Generate ephemeral build key and publish public key only
+        if: env.PRIMARY_RUN == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072 -out /tmp/build_private_key.pem
+          openssl pkey -in /tmp/build_private_key.pem -pubout -out build_public_key.pem
+          git config user.name "secure-build-bot"
+          git config user.email "secure-build-bot@users.noreply.github.com"
+          git add build_public_key.pem
+          git commit -m "Publish ephemeral public key for secure APK build"
+          git push origin HEAD:"${GITHUB_REF_NAME}"
+
+      - name: Wait for encrypted source payload
+        if: env.PRIMARY_RUN == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          ready=0
+          for i in $(seq 1 180); do
+            git fetch origin "${GITHUB_REF_NAME}"
+            git reset --hard "origin/${GITHUB_REF_NAME}"
+            if [[ -s payload.enc.b64 && -s key.enc.b64 ]]; then
+              ready=1
+              break
+            fi
+            sleep 5
+          done
+          if [[ "$ready" != "1" ]]; then
+            echo "::error::Encrypted payload did not arrive."
+            exit 1
+          fi
+
+      - name: Decrypt source in runner memory
+        if: env.PRIMARY_RUN == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 -d key.enc.b64 > /tmp/key.enc
+          openssl pkeyutl -decrypt -inkey /tmp/build_private_key.pem -in /tmp/key.enc -out /tmp/build_passphrase.txt
+          base64 -d payload.enc.b64 > /tmp/payload.enc
+          openssl enc -d -aes-256-cbc -pbkdf2 -iter 100000             -in /tmp/payload.enc -out /tmp/freelancer_app.zip             -pass file:/tmp/build_passphrase.txt
+          mkdir -p freelancer_app
+          unzip -q /tmp/freelancer_app.zip -d freelancer_app
+          test -f freelancer_app/pubspec.yaml
+          test -f freelancer_app/android/app/build.gradle.kts
+          rm -f /tmp/payload.enc /tmp/key.enc /tmp/build_passphrase.txt
+
+      - name: Configure JDK 17
+        if: env.PRIMARY_RUN == 'true'
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Install Flutter 3.44.6
+        if: env.PRIMARY_RUN == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 5 --retry-delay 5             -o /tmp/flutter.tar.xz             https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.44.6-stable.tar.xz
+          sudo tar -xJf /tmp/flutter.tar.xz -C /opt
+          echo "/opt/flutter/bin" >> "$GITHUB_PATH"
+          git config --global --add safe.directory /opt/flutter
+          /opt/flutter/bin/flutter --version
+          /opt/flutter/bin/flutter config --no-analytics
+
+      - name: Resolve Flutter packages
+        if: env.PRIMARY_RUN == 'true'
+        working-directory: freelancer_app
+        shell: bash
+        run: |
+          export PATH="/opt/flutter/bin:$PATH"
+          flutter pub get
+
+      - name: Build release APK
+        if: env.PRIMARY_RUN == 'true'
+        working-directory: freelancer_app
+        shell: bash
+        run: |
+          export PATH="/opt/flutter/bin:$PATH"
+          flutter build apk --release             --dart-define=SITE_URL=https://example.com             --dart-define=APP_NAME="Freelancer Marketplace"             --dart-define=STORE_NAME="Freelancer Marketplace"             --dart-define=APP_VERSION=1.1.0
+
+      - name: Package APK
+        if: env.PRIMARY_RUN == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p output
+          cp freelancer_app/build/app/outputs/flutter-apk/app-release.apk output/Freelancer_Marketplace_DualRole_v1.1.0.apk
+          sha256sum output/Freelancer_Marketplace_DualRole_v1.1.0.apk > output/Freelancer_Marketplace_DualRole_v1.1.0.apk.sha256
+
+      - name: Upload APK artifact
+        if: env.PRIMARY_RUN == 'true'
+        uses: actions/upload-artifact@v7
+        with:
+          name: Freelancer-Marketplace-DualRole-APK
+          path: output/*
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Finish follower run
+        if: env.PRIMARY_RUN == 'false'
+        run: echo "Follower run skipped; primary secure build runner owns the in-memory private key."
