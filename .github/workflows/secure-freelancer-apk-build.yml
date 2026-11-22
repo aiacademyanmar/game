@@ -22,11 +22,12 @@ jobs:
       - name: Detect primary secure-build run
         shell: bash
         run: |
-          if [[ -f payload.enc.b64 && -f key.enc.b64 ]]; then
-            echo "PRIMARY_RUN=false" >> "$GITHUB_ENV"
-            echo "Encrypted payload already exists; this follower run will exit cleanly."
-          else
+          if [[ -f START_SECURE_BUILD && ! -f build_public_key.pem && ! -f payload.enc.b64 && ! -f key.enc.b64 ]]; then
             echo "PRIMARY_RUN=true" >> "$GITHUB_ENV"
+            echo "Fresh secure build requested."
+          else
+            echo "PRIMARY_RUN=false" >> "$GITHUB_ENV"
+            echo "Follower or staged run; exiting cleanly."
           fi
 
       - name: Generate ephemeral build key and publish public key only
@@ -90,18 +91,19 @@ jobs:
         run: |
           set -euo pipefail
           curl -fL --retry 5 --retry-delay 5             -o /tmp/flutter.tar.xz             https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.44.6-stable.tar.xz
-          sudo tar -xJf /tmp/flutter.tar.xz -C /opt
-          echo "/opt/flutter/bin" >> "$GITHUB_PATH"
-          git config --global --add safe.directory /opt/flutter
-          /opt/flutter/bin/flutter --version
-          /opt/flutter/bin/flutter config --no-analytics
+          mkdir -p "$HOME/flutter-sdk"
+          tar -xJf /tmp/flutter.tar.xz -C "$HOME/flutter-sdk"
+          echo "$HOME/flutter-sdk/flutter/bin" >> "$GITHUB_PATH"
+          git config --global --add safe.directory "$HOME/flutter-sdk/flutter"
+          "$HOME/flutter-sdk/flutter/bin/flutter" --version
+          "$HOME/flutter-sdk/flutter/bin/flutter" config --no-analytics
 
       - name: Resolve Flutter packages
         if: env.PRIMARY_RUN == 'true'
         working-directory: freelancer_app
         shell: bash
         run: |
-          export PATH="/opt/flutter/bin:$PATH"
+          export PATH="$HOME/flutter-sdk/flutter/bin:$PATH"
           flutter pub get
 
       - name: Build release APK
@@ -109,7 +111,7 @@ jobs:
         working-directory: freelancer_app
         shell: bash
         run: |
-          export PATH="/opt/flutter/bin:$PATH"
+          export PATH="$HOME/flutter-sdk/flutter/bin:$PATH"
           flutter build apk --release             --dart-define=SITE_URL=https://example.com             --dart-define=APP_NAME="Freelancer Marketplace"             --dart-define=STORE_NAME="Freelancer Marketplace"             --dart-define=APP_VERSION=1.1.0
 
       - name: Package APK
