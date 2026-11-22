@@ -98,6 +98,40 @@ jobs:
           "$HOME/flutter-sdk/flutter/bin/flutter" --version
           "$HOME/flutter-sdk/flutter/bin/flutter" config --no-analytics
 
+      - name: Configure resilient Gradle repositories
+        if: env.PRIMARY_RUN == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          files = [
+              Path.home() / "flutter-sdk/flutter/packages/flutter_tools/gradle/build.gradle.kts",
+              Path("freelancer_app/android/settings.gradle.kts"),
+          ]
+          for p in files:
+              if not p.exists():
+                  continue
+              data = p.read_text()
+              if "maven.aliyun.com/repository/central" not in data:
+                  data = data.replace(
+                      "mavenCentral()",
+                      'maven { url = uri("https://maven.aliyun.com/repository/central") }\\n        mavenCentral()',
+                  )
+              if "maven.aliyun.com/repository/gradle-plugin" not in data:
+                  data = data.replace(
+                      "gradlePluginPortal()",
+                      'maven { url = uri("https://maven.aliyun.com/repository/gradle-plugin") }\\n        gradlePluginPortal()',
+                  )
+              if "maven.aliyun.com/repository/google" not in data:
+                  data = data.replace(
+                      "google()",
+                      'maven { url = uri("https://maven.aliyun.com/repository/google") }\\n        google()',
+                  )
+              p.write_text(data)
+              print("patched", p)
+          PY
+
       - name: Resolve Flutter packages
         if: env.PRIMARY_RUN == 'true'
         working-directory: freelancer_app
@@ -106,13 +140,23 @@ jobs:
           export PATH="$HOME/flutter-sdk/flutter/bin:$PATH"
           flutter pub get
 
-      - name: Build release APK
+      - name: Build release APK with retry
         if: env.PRIMARY_RUN == 'true'
         working-directory: freelancer_app
         shell: bash
         run: |
+          set -euo pipefail
           export PATH="$HOME/flutter-sdk/flutter/bin:$PATH"
-          flutter build apk --release             --dart-define=SITE_URL=https://example.com             --dart-define=APP_NAME="Freelancer Marketplace"             --dart-define=STORE_NAME="Freelancer Marketplace"             --dart-define=APP_VERSION=1.1.0
+          ok=0
+          for attempt in 1 2 3 4; do
+            echo "APK build attempt $attempt/4"
+            if flutter build apk --release --dart-define=SITE_URL=https://example.com --dart-define=APP_NAME="Freelancer Marketplace" --dart-define=STORE_NAME="Freelancer Marketplace" --dart-define=APP_VERSION=1.1.0; then
+              ok=1
+              break
+            fi
+            sleep $((attempt * 45))
+          done
+          test "$ok" = "1"
 
       - name: Package APK
         if: env.PRIMARY_RUN == 'true'
